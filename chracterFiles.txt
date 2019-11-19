@@ -1,0 +1,8 @@
+{'imie': 'Joseph', 'nazwisko': 'Murphy', 'S': 17, 'KON': 76, 'BC': 89, 'ZR': 33, 'WYG': 17, 'INT': 68, 'MOC': 64, 'WYK': 49, 'PS': 72, 'Ruch': 0, 'PW': 16, 'PP': 64, 'PM': 12, 'MO': 0, 'Krzepa': 0}
+
+{'imie': 'William', 'nazwisko': 'Henderson', 'S': 61, 'KON': 21, 'BC': 57, 'ZR': 23, 'WYG': 48, 'INT': 64, 'MOC': 35, 'WYK': 52, 'PS': 49, 'Ruch': 0, 'PW': 7, 'PP': 35, 'PM': 7, 'MO': 0, 'Krzepa': 0}
+
+{'imie': 'Robert', 'nazwisko': 'Morrow', 'S': 77, 'KON': 84, 'BC': 74, 'ZR': 40, 'WYG': 17, 'INT': 75, 'MOC': 54, 'WYK': 42, 'PS': 24, 'Ruch': 0, 'PW': 15, 'PP': 54, 'PM': 10, 'MO': 0, 'Krzepa': 0}
+
+{'imie': 'Billie', 'nazwisko': 'Robinson', 'S': 23, 'KON': 75, 'BC': 82, 'ZR': 50, 'WYG': 40, 'INT': 51, 'MOC': 53, 'WYK': 60, 'PS': 57, 'Ruch': 0, 'PW': 15, 'PP': 53, 'PM': 10, 'MO': 0, 'Krzepa': 0}
+
