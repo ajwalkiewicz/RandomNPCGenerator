@@ -108,11 +108,7 @@ def pochodne(S, BC, *ZR):
             results.append('9')
         else:
             results.append('8')
-    return results    
-
-#Generowanie postaci
-createCharacter()
-
+    return results
 
 #Wyświetlenie profilu postaci
 def printCharacter(itemsDict, leftWidth, rightWidth):
@@ -120,12 +116,20 @@ def printCharacter(itemsDict, leftWidth, rightWidth):
     for k, v in itemsDict.items():
         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
 
-printCharacter(chrProfile, 10, 6)
+#Główna pętla programu
+wartosc = "TAK"
+print("Witaj w programie generującym NPC\n Oto twoja postać:")
+while wartosc:
+    createCharacter()
+    printCharacter(chrProfile, 10, 6)
 
 #Zapisanie profilu do pliku .txt
-chrFile = open('chracterFiles.txt','a')
-chrFile.write(str(chrProfile)+'\n\n')
-chrFile.close()
+    chrFile = open('chracterFiles.txt','a')
+    chrFile.write(str(chrProfile)+'\n\n')
+    chrFile.close()
+
+    print("Czy chcesz kontynuować? (enter to quit)")
+    wartosc = input()
 
 #Sprawdzenie poprawności
 #print(lastName)

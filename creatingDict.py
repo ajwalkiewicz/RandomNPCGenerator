@@ -11,36 +11,12 @@ file = open(plik,'w')
 
 #funkcje tworzące listy imion i nazwisk
 def listCreator(workbook,column):
-    listaImionMenskich = []
-    sheet = workBook[workbook]
-    for i in sheet[column][1:-1]:
-        listaImionMenskich.append(i.value)
-    return listaImionMenskich
+    return [i.value for i in workBook[workbook][column][1:-1]]
 
 def dictCreator(listaNazw, listaNumerow):
-    result = {}
     listaNazw.reverse()
     listaNumerow.reverse()
-    result.setdefault('Nazwa', listaNazw)
-    result.setdefault('Numery',listaNumerow)
-    return result
-
-##def lNumber(workbook, column):
-##    numeryMenskich = []
-##    sheet = workBook[workbook]
-##    for i in sheet[column][1:-1]:
-##        numeryMenskich.append(i.value)
-##    return numeryMenskich
-
-##def dictCreator(listaNazw, listaNumerow):
-##    result = {}
-##    listaNazw.reverse()
-##    listaNumerow.reverse()
-##    result.setdefault(listaNazw[0],list(range(0,int(listaNumerow[0]))))
-##    for i in listaNazw:
-##        result.setdefault(i, list(range(int(listaNumerow[listaNazw.index(i)-1]), int(listaNumerow[listaNazw.index(i)]))))
-##    result.setdefault(listaNazw[-1],list(range(int(listaNumerow[-2]), int(listaNumerow[-1]))))
-##    return result
+    return {'Nazwa':listaNazw,'Numery':listaNumerow}
 
 #zapisanie wyników w pliku dictionaries.txt
 file.write(str(dictCreator(listCreator('first names','B'), listCreator('first names','F')))+'\n\n')
@@ -59,9 +35,7 @@ shelfFile['lastName'] = dictCreator(listCreator('last names','B'),listCreator('l
 if len(dictCreator(listCreator('first names','B'),listCreator('first names','F'))['Nazwa'])==len(dictCreator(listCreator('first names','B'),listCreator('first names','F'))['Numery']):
     print("OK")
 else:
-    print("HUJ")
-
-#print(listCreator('first names','B'))
+    print("ERROR")
 
                  
 

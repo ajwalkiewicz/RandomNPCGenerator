@@ -64,3 +64,23 @@
 
 {'Imie': 'George', 'Nazwisko': 'Carpenter', 'Wiek': 80, 'S': 81, 'KON': 77, 'BC': 60, 'ZR': 40, 'WYG': 58, 'INT': 67, 'MOC': 75, 'WYK': 61, 'PS': 19, 'Ruch': '8', 'PW': 13, 'PP': 75, 'PM': 15, 'MO': '+1K4', 'Krzepa': 1}
 
+{'Imie': 'Willie', 'Nazwisko': 'Stephenson', 'Wiek': 36, 'S': 38, 'KON': 27, 'BC': 69, 'ZR': 83, 'WYG': 61, 'INT': 87, 'MOC': 24, 'WYK': 69, 'PS': 34, 'Ruch': '8', 'PW': 9, 'PP': 24, 'PM': 4, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Norman', 'Nazwisko': 'Beck', 'Wiek': 52, 'S': 29, 'KON': 39, 'BC': 70, 'ZR': 35, 'WYG': 68, 'INT': 45, 'MOC': 78, 'WYK': 48, 'PS': 21, 'Ruch': '7', 'PW': 10, 'PP': 78, 'PM': 15, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Donald', 'Nazwisko': 'Frank', 'Wiek': 53, 'S': 19, 'KON': 70, 'BC': 64, 'ZR': 85, 'WYG': 54, 'INT': 60, 'MOC': 64, 'WYK': 87, 'PS': 41, 'Ruch': '8', 'PW': 13, 'PP': 64, 'PM': 12, 'MO': '-1', 'Krzepa': -1}
+
+{'Imie': 'Charles', 'Nazwisko': 'White', 'Wiek': 78, 'S': 41, 'KON': 84, 'BC': 68, 'ZR': 31, 'WYG': 41, 'INT': 44, 'MOC': 16, 'WYK': 59, 'PS': 34, 'Ruch': '7', 'PW': 15, 'PP': 16, 'PM': 3, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Albert', 'Nazwisko': 'Rose', 'Wiek': 70, 'S': 81, 'KON': 67, 'BC': 64, 'ZR': 40, 'WYG': 83, 'INT': 72, 'MOC': 88, 'WYK': 53, 'PS': 39, 'Ruch': '8', 'PW': 13, 'PP': 88, 'PM': 17, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'David', 'Nazwisko': 'Frye', 'Wiek': 81, 'S': 63, 'KON': 44, 'BC': 74, 'ZR': 66, 'WYG': 70, 'INT': 54, 'MOC': 69, 'WYK': 54, 'PS': 84, 'Ruch': '7', 'PW': 11, 'PP': 69, 'PM': 13, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Richard', 'Nazwisko': 'Parker', 'Wiek': 35, 'S': 85, 'KON': 20, 'BC': 57, 'ZR': 36, 'WYG': 74, 'INT': 89, 'MOC': 58, 'WYK': 89, 'PS': 58, 'Ruch': '8', 'PW': 7, 'PP': 58, 'PM': 11, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Daniel', 'Nazwisko': 'Cameron', 'Wiek': 51, 'S': 35, 'KON': 44, 'BC': 64, 'ZR': 44, 'WYG': 88, 'INT': 72, 'MOC': 67, 'WYK': 65, 'PS': 60, 'Ruch': '7', 'PW': 10, 'PP': 67, 'PM': 13, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Ralph', 'Nazwisko': 'Bright', 'Wiek': 34, 'S': 39, 'KON': 57, 'BC': 43, 'ZR': 87, 'WYG': 77, 'INT': 83, 'MOC': 87, 'WYK': 46, 'PS': 53, 'Ruch': '8', 'PW': 10, 'PP': 87, 'PM': 17, 'MO': '-1', 'Krzepa': -1}
+
+{'Imie': 'Gerald', 'Nazwisko': 'Garrett', 'Wiek': 53, 'S': 21, 'KON': 71, 'BC': 67, 'ZR': 67, 'WYG': 88, 'INT': 70, 'MOC': 77, 'WYK': 42, 'PS': 57, 'Ruch': '8', 'PW': 13, 'PP': 77, 'PM': 15, 'MO': '0', 'Krzepa': 0}
+
