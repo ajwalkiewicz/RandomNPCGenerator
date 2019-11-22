@@ -1,27 +1,25 @@
-# Program ten generuje losowych NPC Do gry Zew Cthulu
+'''
+Program ten generuje losowych NPC Do gry Zew Cthulu
+Wszystkie słowniki zostały wytworzone za pomocą creatingDict.py
+Tutaj jedynie za pomocą modułu shelve zostały zimportowane zmienne
+'''
 
 # import bibliotek
 import openpyxl
-import os
 import random
 import shelve
+import modules.dictionaries
+import os
 
-# Ustawianie aktualnej sciezki:
-sciezka = os.path.join('C:\\', 'Users', 'ajwal', 'OneDrive', 'IT', 'Projekty', 'Zew Cthulhu')
-os.chdir(sciezka)
 # Otwieranie excela
-workBook = openpyxl.load_workbook('lista_imion.xlsx', data_only=True)
+workBook = openpyxl.load_workbook(os.path.join("support", "lista_imion.xlsx"), data_only=True)
 
-# Tworzenie słownika imion: męskich, żeńskich i nazwisk
-# Wszystkie słowniki zostały wytworzone za pomocą creatingDict.py
-# Tutaj jedynie za pomocą modułu shelve zostały zimportowane zmienne
 # Zmienne globalne
-shelvFile = shelve.open('myData')
+shelvFile = shelve.open(os.path.join("support", "myData"))
 manName = shelvFile['manName']
 womanName = shelvFile['womanName']
 lastName = shelvFile['lastName']
-krzepaMO = shelvFile['Krzepa_MO']
-
+krzepaMO = modules.dictionaries.KrzepaMO
 # Słownik zawodów
 
 # Słownik profilu postaci
@@ -92,7 +90,8 @@ def createCharacter():
 def pochodne(S, BC, *ZR):
     for _ in range(len(krzepaMO['Zakres'])):
         if S + BC <= krzepaMO['Zakres'][_]:
-            results = list((krzepaMO['MO'][_], krzepaMO['Krzepa'][_]))
+            results = list(
+                (krzepaMO['MO'][_], krzepaMO['Krzepa'][_]))
             break
     if ZR:
         if ZR[0] < BC and S < BC:
