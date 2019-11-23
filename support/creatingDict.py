@@ -8,38 +8,43 @@ import openpyxl
 import shelve
 
 # otworzenie excela
-workBook = openpyxl.load_workbook('lista_imion.xlsx', data_only=True)
+excel_file = openpyxl.load_workbook('lista_imion.xlsx', data_only=True)
 
 # funkcje tworzące listy imion i nazwisk
 
 
-def listCreator(workbook, column):
-    return [i.value for i in workBook[workbook][column][1:-1]]
+def list_creator(workbook, column):
+    return [i.value for i in excel_file[workbook][column][1:-1]]
 
 
-def dictCreator(listaNazw, listaNumerow):
-    listaNazw.reverse()
-    listaNumerow.reverse()
-    return {'Nazwa': listaNazw, 'Numery': listaNumerow}
+def dict_creator(lista_nazw, lista_numerow):
+    lista_nazw.reverse()
+    lista_numerow.reverse()
+    return {'Nazwa': lista_nazw, 'Numery': lista_numerow}
 
 
 # zapisanie wyników w pliku dictionaries.txt
 file = open("dictionaries.txt", 'w')
-file.write(str(dictCreator(listCreator('first names', 'B'), listCreator('first names', 'F')))+'\n\n')
-file.write(str(dictCreator(listCreator('first names', 'F'), listCreator('first names', 'K')))+'\n\n')
-file.write(str(dictCreator(listCreator('last names', 'B'), listCreator('last names', 'G')))+'\n\n')
+file.write(str(dict_creator(
+    list_creator('first names', 'B'), list_creator('first names', 'F')))+'\n\n')
+file.write(str(dict_creator(
+    list_creator('first names', 'F'), list_creator('first names', 'K')))+'\n\n')
+file.write(str(dict_creator(
+    list_creator('last names', 'B'), list_creator('last names', 'G')))+'\n\n')
 file.close()
 
 # zapisanie zmiennych slownikowych w pliku shelve
-shelfFile = shelve.open('myData')
-shelfFile['manName'] = dictCreator(listCreator('first names', 'B'), listCreator('first names', 'F'))
-shelfFile['womanName'] = dictCreator(listCreator(
-    'first names', 'G'), listCreator('first names', 'K'))
-shelfFile['lastName'] = dictCreator(listCreator('last names', 'B'), listCreator('last names', 'G'))
+shelf_file = shelve.open('myData')
+shelf_file['man_name'] = dict_creator(
+    list_creator('first names', 'B'), list_creator('first names', 'F'))
+shelf_file['woman_name'] = dict_creator(
+    list_creator('first names', 'G'), list_creator('first names', 'K'))
+shelf_file['last_name'] = dict_creator(
+    list_creator('last names', 'B'), list_creator('last names', 'G'))
+
 
 # Sprawdzenie długości list
-
-if len(dictCreator(listCreator('first names', 'B'), listCreator('first names', 'F'))['Nazwa']) == len(dictCreator(listCreator('first names', 'B'), listCreator('first names', 'F'))['Numery']):
+if len(shelf_file['man_name']['Nazwa']) == len(shelf_file['man_name']['Numery']):
     print("OK")
 else:
     print("ERROR")

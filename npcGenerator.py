@@ -12,19 +12,19 @@ import modules.dictionaries
 import os
 
 # Otwieranie excela
-workBook = openpyxl.load_workbook(os.path.join("support", "lista_imion.xlsx"), data_only=True)
+excel_file = openpyxl.load_workbook(os.path.join("support", "lista_imion.xlsx"), data_only=True)
 
 # Zmienne globalne
-shelvFile = shelve.open(os.path.join("support", "myData"))
-manName = shelvFile['manName']
-womanName = shelvFile['womanName']
-lastName = shelvFile['lastName']
-krzepaMO = modules.dictionaries.KrzepaMO
+shelv_file = shelve.open(os.path.join("support", "myData"))
+man_name = shelv_file['man_name']
+woman_name = shelv_file['woman_name']
+last_name = shelv_file['last_name']
+KRZEPA_MO = modules.dictionaries.KRZEPA_MO
 # Słownik zawodów
 
 # Słownik profilu postaci
 
-chrProfile = {
+chr_profile = {
     'Imie': '',
     'Nazwisko': '',
     'Wiek': 0,
@@ -49,7 +49,7 @@ chrProfile = {
 
 
 def losuj(dictionary, workbook, cell):
-    sheet = workBook[workbook]
+    sheet = excel_file[workbook]
     number = random.randint(0, int(sheet[cell].value))
     for i in range(len(dictionary['Numery'])):
         if number <= dictionary['Numery'][i]:
@@ -59,39 +59,39 @@ def losuj(dictionary, workbook, cell):
 # Losowanie zawodu
 
 
-def losujZawod():
+def losuj_zawod():
     return
 
 # Generowanie cech postaci
 
 
-def createCharacter():
-    chrProfile['Imie'] = losuj(manName, 'first names', 'E202')
-    chrProfile['Nazwisko'] = losuj(lastName, 'last names', 'F1002')
-    chrProfile['Wiek'] = random.randint(15, 90)
-    chrProfile['S'] = random.randint(15, 90)
-    chrProfile['KON'] = random.randint(15, 90)
-    chrProfile['BC'] = random.randint(40, 90)
-    chrProfile['ZR'] = random.randint(15, 90)
-    chrProfile['WYG'] = random.randint(15, 90)
-    chrProfile['INT'] = random.randint(40, 90)
-    chrProfile['MOC'] = random.randint(15, 90)
-    chrProfile['WYK'] = random.randint(40, 90)
-    chrProfile['PP'] = chrProfile['MOC']
-    chrProfile['PS'] = random.randint(15, 90)
-    chrProfile['PM'] = chrProfile['MOC']//5
-    chrProfile['PW'] = (chrProfile['BC']+chrProfile['KON'])//10
-    chrProfile['MO'] = pochodne(chrProfile['S'], chrProfile['BC'])[0]
-    chrProfile['Krzepa'] = pochodne(chrProfile['S'], chrProfile['BC'])[1]
-    chrProfile['Ruch'] = pochodne(chrProfile['S'], chrProfile['BC'], chrProfile['ZR'])[2]
+def create_character():
+    chr_profile['Imie'] = losuj(man_name, 'first names', 'E202')
+    chr_profile['Nazwisko'] = losuj(last_name, 'last names', 'F1002')
+    chr_profile['Wiek'] = random.randint(15, 90)
+    chr_profile['S'] = random.randint(15, 90)
+    chr_profile['KON'] = random.randint(15, 90)
+    chr_profile['BC'] = random.randint(40, 90)
+    chr_profile['ZR'] = random.randint(15, 90)
+    chr_profile['WYG'] = random.randint(15, 90)
+    chr_profile['INT'] = random.randint(40, 90)
+    chr_profile['MOC'] = random.randint(15, 90)
+    chr_profile['WYK'] = random.randint(40, 90)
+    chr_profile['PP'] = chr_profile['MOC']
+    chr_profile['PS'] = random.randint(15, 90)
+    chr_profile['PM'] = chr_profile['MOC'] // 5
+    chr_profile['PW'] = (chr_profile['BC'] + chr_profile['KON']) // 10
+    chr_profile['MO'] = pochodne(chr_profile['S'], chr_profile['BC'])[0]
+    chr_profile['Krzepa'] = pochodne(chr_profile['S'], chr_profile['BC'])[1]
+    chr_profile['Ruch'] = pochodne(chr_profile['S'], chr_profile['BC'], chr_profile['ZR'])[2]
     return
 
 
 def pochodne(S, BC, *ZR):
-    for _ in range(len(krzepaMO['Zakres'])):
-        if S + BC <= krzepaMO['Zakres'][_]:
+    for _ in range(len(KRZEPA_MO['Zakres'])):
+        if S + BC <= KRZEPA_MO['Zakres'][_]:
             results = list(
-                (krzepaMO['MO'][_], krzepaMO['Krzepa'][_]))
+                (KRZEPA_MO['MO'][_], KRZEPA_MO['Krzepa'][_]))
             break
     if ZR:
         if ZR[0] < BC and S < BC:
@@ -105,7 +105,7 @@ def pochodne(S, BC, *ZR):
 # Wyświetlenie profilu postaci
 
 
-def printCharacter(itemsDict, leftWidth, rightWidth):
+def print_character(itemsDict, leftWidth, rightWidth):
     print('PROFIL POSTACI'.center(leftWidth + rightWidth, '-'))
     for k, v in itemsDict.items():
         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
@@ -115,13 +115,13 @@ def printCharacter(itemsDict, leftWidth, rightWidth):
 wartosc = "TAK"
 print("Witaj w programie generującym NPC\n Oto twoja postać:")
 while wartosc:
-    createCharacter()
-    printCharacter(chrProfile, 10, 6)
+    create_character()
+    print_character(chr_profile, 10, 6)
 
 # Zapisanie profilu do pliku .txt
-    chrFile = open('chracterFiles.txt', 'a')
-    chrFile.write(str(chrProfile)+'\n\n')
-    chrFile.close()
+    chr_file = open('chracter_files.txt', 'a')
+    chr_file.write(str(chr_profile)+'\n\n')
+    chr_file.close()
 
     print("Czy chcesz kontynuować? (enter to quit)")
     wartosc = input()
