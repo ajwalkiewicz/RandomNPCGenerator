@@ -1,0 +1,26 @@
+{'Imie': 'Martin', 'Nazwisko': 'Fields', 'Wiek': 37, 'S': 15, 'KON': 17, 'BC': 42, 'ZR': 24, 'WYG': 59, 'INT': 78, 'MOC': 53, 'WYK': 72, 'PS': 40, 'Ruch': '7', 'PW': 5, 'PP': 53, 'PM': 10, 'MO': '-2', 'Krzepa': -2}
+
+{'Imie': 'Jesse', 'Nazwisko': 'Johnson', 'Wiek': 80, 'S': 81, 'KON': 29, 'BC': 72, 'ZR': 25, 'WYG': 29, 'INT': 50, 'MOC': 67, 'WYK': 79, 'PS': 82, 'Ruch': '8', 'PW': 10, 'PP': 67, 'PM': 13, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Earl', 'Nazwisko': 'Stephens', 'Wiek': 90, 'S': 82, 'KON': 86, 'BC': 85, 'ZR': 29, 'WYG': 58, 'INT': 89, 'MOC': 78, 'WYK': 80, 'PS': 71, 'Ruch': '7', 'PW': 17, 'PP': 78, 'PM': 15, 'MO': '+1K6', 'Krzepa': 2}
+
+{'Imie': 'Jack', 'Nazwisko': 'Stephens', 'Wiek': 54, 'S': 19, 'KON': 74, 'BC': 68, 'ZR': 47, 'WYG': 31, 'INT': 80, 'MOC': 67, 'WYK': 60, 'PS': 66, 'Ruch': '7', 'PW': 14, 'PP': 67, 'PM': 13, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Phillip', 'Nazwisko': 'Fleming', 'Wiek': 86, 'S': 60, 'KON': 55, 'BC': 80, 'ZR': 78, 'WYG': 77, 'INT': 48, 'MOC': 63, 'WYK': 64, 'PS': 64, 'Ruch': '7', 'PW': 13, 'PP': 63, 'PM': 12, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Robert', 'Nazwisko': 'Schwartz', 'Wiek': 77, 'S': 31, 'KON': 85, 'BC': 69, 'ZR': 52, 'WYG': 30, 'INT': 45, 'MOC': 47, 'WYK': 56, 'PS': 36, 'Ruch': '7', 'PW': 15, 'PP': 47, 'PM': 9, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Jack', 'Nazwisko': 'Obrien', 'Wiek': 61, 'S': 24, 'KON': 80, 'BC': 43, 'ZR': 45, 'WYG': 81, 'INT': 41, 'MOC': 82, 'WYK': 42, 'PS': 43, 'Ruch': '8', 'PW': 12, 'PP': 82, 'PM': 16, 'MO': '-1', 'Krzepa': -1}
+
+{'Imie': 'William', 'Nazwisko': 'Terrell', 'Wiek': 30, 'S': 55, 'KON': 33, 'BC': 63, 'ZR': 77, 'WYG': 24, 'INT': 70, 'MOC': 24, 'WYK': 44, 'PS': 88, 'Ruch': '8', 'PW': 9, 'PP': 24, 'PM': 4, 'MO': '0', 'Krzepa': 0}
+
+{'Imie': 'Herman', 'Nazwisko': 'Mcguire', 'Wiek': 52, 'S': 84, 'KON': 63, 'BC': 45, 'ZR': 70, 'WYG': 32, 'INT': 66, 'MOC': 54, 'WYK': 85, 'PS': 38, 'Ruch': '9', 'PW': 10, 'PP': 54, 'PM': 10, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Michael', 'Nazwisko': 'Barber', 'Wiek': 34, 'S': 79, 'KON': 23, 'BC': 49, 'ZR': 78, 'WYG': 54, 'INT': 43, 'MOC': 87, 'WYK': 52, 'PS': 88, 'Ruch': '9', 'PW': 7, 'PP': 87, 'PM': 17, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'Charles', 'Nazwisko': 'Perry', 'Wiek': 31, 'S': 86, 'KON': 89, 'BC': 87, 'ZR': 53, 'WYG': 25, 'INT': 88, 'MOC': 35, 'WYK': 52, 'PS': 15, 'Ruch': '7', 'PW': 17, 'PP': 35, 'PM': 7, 'MO': '+1K6', 'Krzepa': 2}
+
+{'Imie': 'Fred', 'Nazwisko': 'Moore', 'Wiek': 49, 'S': 89, 'KON': 40, 'BC': 68, 'ZR': 21, 'WYG': 50, 'INT': 86, 'MOC': 21, 'WYK': 59, 'PS': 22, 'Ruch': '8', 'PW': 10, 'PP': 21, 'PM': 4, 'MO': '+1K4', 'Krzepa': 1}
+
+{'Imie': 'James', 'Nazwisko': 'Williams', 'Wiek': 35, 'S': 55, 'KON': 32, 'BC': 75, 'ZR': 70, 'WYG': 28, 'INT': 62, 'MOC': 64, 'WYK': 81, 'PS': 90, 'Ruch': '7', 'PW': 10, 'PP': 64, 'PM': 12, 'MO': '+1K4', 'Krzepa': 1}
+

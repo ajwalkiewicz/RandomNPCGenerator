@@ -9,18 +9,19 @@ import openpyxl
 import random
 import shelve
 import modules.dictionaries
-import os
+from os import path
+import tkinter
+from PIL import ImageTk, Image
 
 # Otwieranie excela
-excel_file = openpyxl.load_workbook(os.path.join("support", "lista_imion.xlsx"), data_only=True)
+excel_file = openpyxl.load_workbook(path.join("support", "lista_imion.xlsx"), data_only=True)
 
 # Zmienne globalne
-shelv_file = shelve.open(os.path.join("support", "myData"))
+shelv_file = shelve.open(path.join("support", "myData"))
 man_name = shelv_file['man_name']
 woman_name = shelv_file['woman_name']
 last_name = shelv_file['last_name']
 KRZEPA_MO = modules.dictionaries.KRZEPA_MO
-# Słownik zawodów
 
 # Słownik profilu postaci
 
@@ -44,6 +45,12 @@ chr_profile = {
     'MO': 0,
     'Krzepa': 0,
 }
+
+
+class Character:
+    def __init__(self):
+        return
+
 
 # Losowanie imion i nazwisk
 
@@ -111,21 +118,89 @@ def print_character(itemsDict, leftWidth, rightWidth):
         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
 
 
-# Główna pętla programu
-wartosc = "TAK"
-print("Witaj w programie generującym NPC\n Oto twoja postać:")
-while wartosc:
-    create_character()
-    print_character(chr_profile, 10, 6)
+def print_character2(itemsDict, leftWidth, rightWidth):
+    show_character.insert(tkinter.INSERT, 'PROFIL POSTACI'.center(leftWidth + rightWidth, '-'))
+    for k, v in itemsDict.items():
+        show_character.insert(tkinter.INSERT, k.ljust(
+            leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
 
-# Zapisanie profilu do pliku .txt
+
+def generate():
+    create_character()
+    print_character2(chr_profile, 20, 40)
+    save()
+
+
+def save():
     chr_file = open('chracter_files.txt', 'a')
     chr_file.write(str(chr_profile)+'\n\n')
     chr_file.close()
 
-    print("Czy chcesz kontynuować? (enter to quit)")
-    wartosc = input()
 
+# GUI in tkinter
+
+root = tkinter.Tk()
+root.title('NPC Generator')
+
+# Lewa część okna
+options_frame = tkinter.LabelFrame(root, text='Opcje postaci', padx=10, pady=10)
+options_frame.grid(row=0, column=0, sticky=tkinter.NS)
+
+clicked1 = tkinter.StringVar()
+clicked1.set('Random')
+clicked2 = tkinter.StringVar()
+clicked2.set('Random')
+
+gender_list = tkinter.OptionMenu(options_frame, clicked1, 'Mężczyzna', 'Kobieta', 'Random')
+gender_list.grid(row=0, column=0)
+
+job_list = tkinter.OptionMenu(
+    options_frame,
+    clicked2,
+    'Antykwariusz',
+    'Policjant',
+    'Lekarz',
+    'Farmer',
+    'Bibliotekarz')
+job_list.grid(row=1, column=0)
+
+button_generate = tkinter.Button(
+    options_frame, text='Generuj', font=('Helvetica', 10), command=generate)
+button_generate.grid(row=2, column=0)
+
+
+def clear():
+    pass
+    # show_character.delete(0, tkinter.END)
+
+
+button_clear = tkinter.Button(
+    options_frame, text='Wyczyść', font=('Helvetica', 10), command=clear)
+button_clear.grid(row=3, column=0)
+
+# Środkowa część okna
+results_frame = tkinter.LabelFrame(root, text='Statystyki Postaci:', padx=10, pady=10)
+results_frame.grid(row=0, column=1, sticky=tkinter.NS)
+
+show_character = tkinter.Text(results_frame, width=60, height=20)
+show_character.pack()
+
+# Prawa strona okna
+extra_options_frame = tkinter.LabelFrame(root, text='Zdjęcie Postaci', padx=10, pady=10)
+extra_options_frame.grid(row=0, column=2, sticky=tkinter.NS)
+
+char_image = ImageTk.PhotoImage(Image.open('support/images/test.jpg').resize(
+    (200, 300), resample=Image.ANTIALIAS))
+show_image = tkinter.Label(extra_options_frame, image=char_image)
+button_save = tkinter.Button(extra_options_frame, text='Save', anchor=tkinter.S)
+button_exit = tkinter.Button(extra_options_frame, text='Exit', command=root.quit, anchor=tkinter.S)
+
+show_image.grid(row=0, column=0, columnspan=2)
+button_save.grid(row=1, column=0)
+button_exit.grid(row=1, column=1)
+
+
+root.mainloop()
 # Sprawdzenie poprawności
 # print(lastName)
 # print(lastName['Nazwa'][5])
