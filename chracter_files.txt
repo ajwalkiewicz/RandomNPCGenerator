@@ -1,0 +1,2 @@
+{'Imie': 'David', 'Nazwisko': 'Garcia', 'Wiek': 48, 'S': 35, 'KON': 38, 'BC': 79, 'ZR': 15, 'WYG': 20, 'INT': 69, 'MOC': 55, 'WYK': 57, 'PS': 72, 'Ruch': '7', 'PW': 11, 'PP': 55, 'PM': 11, 'MO': '0', 'Krzepa': 0}
+
