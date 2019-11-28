@@ -1,8 +1,10 @@
 # Słowniki wykorzystywane w npcGeneratorze
 
 ZAWODY = {
-    'Antykwariusz': {'Cechy': [], 'Umiejętności': []},
-    'Bogaty hobbysta': []
+    'Antykwariusz': (30, 70),
+    'Bogaty hobbysta': (50, 90),
+    'Detektyw Policyjny': (20, 50),
+    'Arytsta': (5, 50)
 }
 
 KRZEPA_MO = {
@@ -16,4 +18,4 @@ WIEK = {
     'Ruch': [0, 0, -1, -2, -3, -4, -5]
 }
 
-CECHY = ['WYK', 'WYG', 'ZR', 'S']
+UMIEJETNOSCI = {}

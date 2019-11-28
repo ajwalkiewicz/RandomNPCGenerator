@@ -8,8 +8,7 @@ import openpyxl
 import shelve
 
 # otworzenie excela
-excel_file = openpyxl.load_workbook('lista_imion.xlsx', data_only=True)
-
+excel_file = openpyxl.load_workbook('data.xlsx', data_only=True)
 # funkcje tworzące listy imion i nazwisk
 
 
@@ -23,6 +22,12 @@ def dict_creator(lista_nazw, lista_numerow):
     return {'Nazwa': lista_nazw, 'Numery': lista_numerow}
 
 
+def job_dict_creator(lista_nazw, lista_numerow):
+    lista_nazw.reverse()
+    lista_numerow.reverse()
+    return {job: int(lista_numerow[lista_nazw.index(job)]) for job in lista_nazw}
+
+
 # zapisanie wyników w pliku dictionaries.txt
 file = open("dictionaries.txt", 'w')
 file.write(str(dict_creator(
@@ -33,6 +38,11 @@ file.write(str(dict_creator(
     list_creator('last names', 'B'), list_creator('last names', 'G')))+'\n\n')
 file.close()
 
+file = open('skills.txt', 'w')
+file.write(str(job_dict_creator(
+    list_creator('skills', 'A'), list_creator('skills', 'B')))+'\n\n')
+file.close()
+
 # zapisanie zmiennych slownikowych w pliku shelve
 shelf_file = shelve.open('myData')
 shelf_file['man_name'] = dict_creator(
@@ -41,7 +51,8 @@ shelf_file['woman_name'] = dict_creator(
     list_creator('first names', 'G'), list_creator('first names', 'K'))
 shelf_file['last_name'] = dict_creator(
     list_creator('last names', 'B'), list_creator('last names', 'G'))
-
+shelf_file['skills'] = job_dict_creator(
+    list_creator('skills', 'A'), list_creator('skills', 'B'))
 
 # Sprawdzenie długości list
 if len(shelf_file['man_name']['Nazwa']) == len(shelf_file['man_name']['Numery']):
