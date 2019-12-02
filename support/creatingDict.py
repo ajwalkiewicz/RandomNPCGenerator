@@ -25,7 +25,9 @@ def dict_creator(lista_nazw, lista_numerow):
 def job_dict_creator(lista_nazw, lista_numerow):
     lista_nazw.reverse()
     lista_numerow.reverse()
-    return {job: int(lista_numerow[lista_nazw.index(job)]) for job in lista_nazw}
+    # Pamiętaj by w komórkach w excelu znajdowały się jakieś wartości
+    # W przeciwnym razie program zwróci error, ze int() nie moze działać na Nontype
+    return {job:  int(lista_numerow[lista_nazw.index(job)]) for job in lista_nazw}
 
 
 # zapisanie wyników w pliku dictionaries.txt
@@ -33,7 +35,7 @@ file = open("dictionaries.txt", 'w')
 file.write(str(dict_creator(
     list_creator('first names', 'B'), list_creator('first names', 'F')))+'\n\n')
 file.write(str(dict_creator(
-    list_creator('first names', 'F'), list_creator('first names', 'K')))+'\n\n')
+    list_creator('first names', 'G'), list_creator('first names', 'K')))+'\n\n')
 file.write(str(dict_creator(
     list_creator('last names', 'B'), list_creator('last names', 'G')))+'\n\n')
 file.close()
@@ -54,6 +56,7 @@ shelf_file['last_name'] = dict_creator(
 shelf_file['skills'] = job_dict_creator(
     list_creator('skills', 'A'), list_creator('skills', 'B'))
 
+print(shelf_file['skills'])
 # Sprawdzenie długości list
 if len(shelf_file['man_name']['Nazwa']) == len(shelf_file['man_name']['Numery']):
     print("OK")
