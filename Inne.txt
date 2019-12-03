@@ -1,0 +1,120 @@
+------------------PROFIL POSTACI------------------
+Imie                          George              
+Nazwisko                      Stein               
+Płeć                          Mężczyzna           
+Zawód                         Artysta estradowy   
+Wiek                          25                  
+S                             68                  
+KON                           81                  
+BC                            84                  
+ZR                            53                  
+WYG                           84                  
+INT                           90                  
+MOC                           74                  
+WYK                           57                  
+PS                            67                  
+Ruch                          7                   
+PW                            16                  
+PP                            74                  
+PM                            14                  
+MO                            +1K4                
+Krzepa                        1                   
+-------------------UMIEJĘTNOŚCI-------------------
+Taniec                        5                   
+Rolnictwo                     5                   
+Śpiew                         5                   
+Malarstwo                     5                   
+Gotowanie                     5                   
+Stolarstwo                    5                   
+Rzeźba                        5                   
+Pisarstwo                     5                   
+Kaligrafia                    5                   
+Hutnictwo                     5                   
+Grancarstwo                   5                   
+Fryzjerstwo                   5                   
+Zręczne Palce                 10                  
+Zoologia                      74                  
+Zastraszanie                  15                  
+Wycena                        5                   
+Wspinaczka                    20                  
+Włócznia                      20                  
+Wiedza Tajemna                1                   
+Wiedza o Naturze              80                  
+Urok Osobisty                 15                  
+Unik                          26                  
+Ukrywanie                     20                  
+Tropienie                     10                  
+Tresura Zwierząt              5                   
+Topór/Siekiera                15                  
+Ślusarstwo                    23                  
+Sztuki Piękne                 5                   
+Sztuka Przetrwania            10                  
+Spostrzegawczość              25                  
+Skakanie                      20                  
+Rzucanie                      20                  
+Psychologia                   59                  
+Psychoanaliza                 1                   
+Prowadzenie Samochodu         20                  
+Prawo                         5                   
+Pływanie                      20                  
+Pistolet Maszynowy            15                  
+Piła Łańcuchowa               10                  
+Pilotowanie: łódż             1                   
+Pilotowanie: samolot          1                   
+Pierwsza Pomoc                30                  
+Perswazja                     10                  
+Okultyzm                      5                   
+Obsługa Ciężkiego Sprzętu     1                   
+Nurkowanie                    1                   
+Nawigacja                     10                  
+Nasłuchiwanie                 23                  
+Miotacz Ognia                 10                  
+Miecz                         20                  
+Meteorologia                  1                   
+Medycyna                      1                   
+Mechanika                     10                  
+Materiały Wybuchowe           1                   
+Matematyka                    10                  
+Majętność                     0                   
+Łuk                           15                  
+Księgowość                    5                   
+Kryptografia                  1                   
+Kryminalistyka                1                   
+Korzystanie z bibliotek       20                  
+Karabin Maszynowy             10                  
+Karabin/Strzelba              25                  
+Język Ojczysty                57                  
+Język Obcy: Inny              1                   
+Język Obcy: Greka             1                   
+Język Obcy: Łacina            1                   
+Język Obcy: Hiszpański        1                   
+Język Obcy: Francuski         1                   
+Język Obcy: Niemiecki         1                   
+Jeździectwo                   5                   
+Inżynieria                    1                   
+Historia                      5                   
+Hipnoza                       1                   
+Geologia                      1                   
+Garota                        15                  
+Gadanina                      5                   
+Fotografia                    5                   
+Fizyka                        1                   
+Farmacja                      79                  
+Fałszerstwo                   5                   
+Elektryka                     10                  
+Czytanie z Ruchu Warg         1                   
+Chemia                        1                   
+Charakteryzacja               5                   
+Broń Obuchowa                 10                  
+Broń Krótka                   20                  
+Broń Ciężka                   10                  
+Broń Artyleryjska             37                  
+Botanika                      1                   
+Biologia                      1                   
+Walka Wręcz (Bijatyka)        25                  
+Walka Wręcz (Bicz)            5                   
+Astronomia                    1                   
+Archeologia                   1                   
+Antropologia                  1                   
+Aktorstwo                     90                  
+Majętność                     46

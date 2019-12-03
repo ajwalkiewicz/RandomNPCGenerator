@@ -1,5 +1,6 @@
 # Słowniki wykorzystywane w npcGeneratorze
 import random
+# do usunięcia po wprowadzeniu dancyh z excela
 
 ZAWODY = {
     'Antykwariusz': (30, 70),
@@ -72,6 +73,7 @@ SPEC = {'I': ('Gadanina', 'Perswazja', 'Urok Osobisty', 'Zastraszanie'),
         'D': ALL_SKILLS
         }
 
+# Do usunięcia po wprowadzeniu importowania danych z ezcela
 JOB_SKILLS = {'Antykwariusz': (('Korzystanie z bibliotek', 'Historia', 'Spostrzegawczość',
                                 'Wycena'), (((1, 'SR'), (1, 'I'), (1, 'D'), (1, 'J')))),
               'Artysta': (('Psychologia', 'Spostrzegawczość'),

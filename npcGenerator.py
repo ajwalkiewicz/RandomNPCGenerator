@@ -18,6 +18,8 @@ man_name = shelv_file['man_name']
 woman_name = shelv_file['woman_name']
 last_name = shelv_file['last_name']
 all_skills = shelv_file['skills']
+# zaimportuj JOB_SKILLS z shelve a następnie usuń importowanie JOB_SKILLS
+# z dictionaries.py
 KRZEPA_MO = modules.dictionaries.KRZEPA_MO
 ZAWODY = modules.dictionaries.ZAWODY
 WIEK = modules.dictionaries.WIEK
@@ -66,41 +68,44 @@ LISTA_ZAWODOW = (
      'Prywatny detektyw', 'Przestępca', 'Włóczęga',
      'Żołnierz'))  # 5
 
+# Do usunięcia po zastosowaniu importowania danych z excela
 job_skills = ['Psychoanaliza', 'Prowadzenie Samochodu', 'Prawo', 'Pływanie',
               'Pistolet Maszynowy', 'Piła Łańcuchowa', 'Pierwsza Pomoc',
               'Perswazja', 'Okultyzm', 'Obsługa Ciężkiego Sprzętu', 'Nurkowanie',
               'Nawigacja', 'Nasłuchiwanie', 'Miotacz Ognia', 'Miecz',
               'Meteorologia', 'Medycyna']
+job_skills = [i.lower() for i in job_skills]
 
 
 def losuj_zawod(zaw='Optymalny'):
+    global LISTA_ZAWODOW
+    global skill_points
+    global hobby_points
+
+    lista_punktow = (
+        chr_profile['WYK']*4,  # 1
+        chr_profile['WYK']*2 + chr_profile["MOC"]*2,  # 2
+        chr_profile['WYK']*2 + chr_profile["ZR"]*2,  # 3
+        chr_profile['WYK']*2 + chr_profile["WYG"]*2,  # 4
+        chr_profile['WYK']*2 + chr_profile["S"]*2)  # 5
+
     if zaw == 'Random':
-        chr_profile['Zawód'] = random.choice([job for job in ZAWODY.keys()])
+        zawod = random.choice([job for job in MAJETNOSC.keys()])
+        chr_profile['Zawód'] = zawod
+        pozycja_zaw = [i for i, j in enumerate(LISTA_ZAWODOW) if zawod in j]
+        punkty = [i for i in lista_punktow if lista_punktow.index(i) in pozycja_zaw]
+        skill_points = max(punkty)
     else:
-        def punkty():
-            global LISTA_ZAWODOW
-            global skill_points
-            global hobby_points
+        skill_points = max(lista_punktow)
+        max_punkty = [i for i, j in enumerate(lista_punktow) if j == skill_points]
+        pozycja = random.choice(max_punkty)
+        if len(LISTA_ZAWODOW[pozycja]) == 1:
+            zawod = LISTA_ZAWODOW[pozycja]
+        else:
+            zawod = random.choice(LISTA_ZAWODOW[pozycja])
+        chr_profile['Zawód'] = zawod
 
-            lista_punktow = (
-                chr_profile['WYK']*4,  # 1
-                chr_profile['WYK']*2 + chr_profile["MOC"]*2,  # 2
-                chr_profile['WYK']*2 + chr_profile["ZR"]*2,  # 3
-                chr_profile['WYK']*2 + chr_profile["WYG"]*2,  # 4
-                chr_profile['WYK']*2 + chr_profile["S"]*2)  # 5
-
-            hobby_points = chr_profile['INT']*2
-            skill_points = max(lista_punktow)
-            max_punkty = [i for i, j in enumerate(lista_punktow) if j == skill_points]
-            pozycja = random.choice(max_punkty)
-            if len(LISTA_ZAWODOW[pozycja]) == 1:
-                result = LISTA_ZAWODOW[pozycja]
-                return result
-            else:
-                result = random.choice(LISTA_ZAWODOW[pozycja])
-                return result
-
-        chr_profile['Zawód'] = punkty()
+    hobby_points = chr_profile['INT']*2
     # chr_profile['Zawód'] =
 
 # Losowanie imion i nazwisk
@@ -136,10 +141,10 @@ def pochodne(S=0, BC=0, ZR=0):
 def umiejetnosci(zawod):
     def job_skills(zawod):
         global job_skills
-        if zawod in JOB_SKILLS.keys():
-            return modules.dictionaries.temp(zawod)
-        else:
-            return job_skills
+        # if zawod in JOB_SKILLS.keys():
+        #     return modules.dictionaries.temp(zawod)
+        # else:
+        return job_skills
 
     global skill_points
     job_skills = job_skills(zawod)
@@ -149,7 +154,7 @@ def umiejetnosci(zawod):
     character_skills = all_skills.copy()
     #  Rozwiązać zapamiętywanie skillsów poprzednich postaci - trzeba zresetować all-skills
     credit_rating = random.randint(*MAJETNOSC[zawod])
-    character_skills['Majętność '] = credit_rating
+    character_skills['Majętność'] = credit_rating
     character_skills['Unik'] = chr_profile['ZR'] // 2
     character_skills['Język Ojczysty'] = chr_profile['WYK']
     skill_points -= credit_rating
@@ -217,6 +222,8 @@ def create_character(zaw, plec):
     if temp == woman_name:
         chr_profile['Płeć'] = 'Kobieta'
 
+    ustawienia_zawodu = zaw
+
     def main_traits():
         chr_profile['Imie'] = losuj(temp, 'first names')
         chr_profile['Nazwisko'] = losuj(last_name, 'last names')
@@ -236,12 +243,7 @@ def create_character(zaw, plec):
         chr_profile['MO'] = pochodne(chr_profile['S'], chr_profile['BC'])[0]
         chr_profile['Krzepa'] = pochodne(chr_profile['S'], chr_profile['BC'])[1]
         chr_profile['Ruch'] = pochodne(chr_profile['S'], chr_profile['BC'], chr_profile['ZR'])[2]
-        modyfikuj_cechy(Wiek=int(chr_profile['Wiek']),
-                        WYG=int(chr_profile['WYG']),
-                        PS=int(chr_profile['PS']),
-                        Ruch=int(chr_profile['Ruch']))
-        losuj_zawod(zaw)
-        umiejetnosci(chr_profile['Zawód'])
+        print(chr_profile['Zawód'])
 
     def modyfikuj_cechy(Wiek=0, WYG=0, PS=0, Ruch=0):
         if Wiek <= 19:
@@ -335,15 +337,25 @@ def create_character(zaw, plec):
         chr_profile['WYG'] = WYG
         chr_profile['PS'] = PS
         chr_profile['Ruch'] = Ruch
+
     main_traits()
+    modyfikuj_cechy(Wiek=int(chr_profile['Wiek']),
+                    WYG=int(chr_profile['WYG']),
+                    PS=int(chr_profile['PS']),
+                    Ruch=int(chr_profile['Ruch']))
+    losuj_zawod(ustawienia_zawodu)
+    umiejetnosci(chr_profile['Zawód'])
+
     return None
+
 
 # Wyświetlenie profilu postaci
 
-# def print_character1(itemsDict, leftWidth, rightWidth):
-#     print('PROFIL POSTACI'.center(leftWidth + rightWidth, '-'))
-#     for k, v in itemsDict.items():
-#         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
+
+def print_character1(itemsDict, leftWidth, rightWidth):
+    print('PROFIL POSTACI'.center(leftWidth + rightWidth, '-'))
+    for k, v in itemsDict.items():
+        print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
 
 
 def print_character2(itemsDict, leftWidth, rightWidth):
@@ -355,15 +367,16 @@ def print_character2(itemsDict, leftWidth, rightWidth):
 
     show_character.insert(tkinter.INSERT, 'UMIEJĘTNOŚCI'.center(
         leftWidth + rightWidth, '-') + '\n')
-    for k, v in character_skills.items():
-        show_character.insert(tkinter.INSERT, k.ljust(
+    for k, v in sorted(character_skills.items()):
+        show_character.insert(tkinter.INSERT, k.capitalize().ljust(
             leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
 
 
 def generate():
     create_character(clicked2.get(), clicked1.get())
+    print_character1(chr_profile, 30, 20)
     print_character2(chr_profile, 30, 20)
-    # save()
+    save()
 
 
 def save():
@@ -383,7 +396,7 @@ options_frame.grid(row=0, column=0, sticky=tkinter.NS)
 clicked1 = tkinter.StringVar()
 clicked1.set('Random')
 clicked2 = tkinter.StringVar()
-clicked2.set('Optymalny')
+clicked2.set('Random')
 
 
 gender_list = tkinter.OptionMenu(
