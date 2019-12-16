@@ -8,6 +8,7 @@ Tutaj jedynie za pomocą modułu shelve zostały zimportowane zmienne
 import random
 import shelve
 import modules.dictionaries
+import modules.imagePicker
 from os import path
 import tkinter
 from PIL import ImageTk, Image
@@ -170,8 +171,9 @@ def umiejetnosci(zawod):
             else:
                 przydzial_pkt = random.randint(0, 90-character_skills[skill])
             # Sprawdzenie przydziału punktów
-            print(
-                f'{skill}: {character_skills[skill]}: {przydzial_pkt}, pozostało: {skill_points - przydzial_pkt}')
+            # print(
+            #     f'{skill}: {character_skills[skill]}: {przydzial_pkt},
+            # pozostało: {skill_points - przydzial_pkt}')
             character_skills[skill] += przydzial_pkt
             skill_points -= przydzial_pkt
             if skill_points == 0:
@@ -189,8 +191,9 @@ def umiejetnosci(zawod):
             else:
                 przydzial_pkt = random.randint(0, 90-character_skills[skill])
             # Sprawdzenie przydziału punktów
-            print(
-                f'{skill}: {character_skills[skill]}: {przydzial_pkt}, pozostało: {hobby_points - przydzial_pkt}')
+            # print(
+            #     f'{skill}: {character_skills[skill]}: {przydzial_pkt},
+            # pozostało: {hobby_points - przydzial_pkt}')
             character_skills[skill] += przydzial_pkt
             hobby_points -= przydzial_pkt
             if hobby_points == 0:
@@ -358,12 +361,18 @@ def print_character1(itemsDict, leftWidth, rightWidth):
         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
 
 
-def print_character2(itemsDict, leftWidth, rightWidth):
+def print_character2(itemsDict, leftWidth=0, rightWidth=0, columns=1):
     show_character.insert(tkinter.INSERT, 'PROFIL POSTACI'.center(
         leftWidth + rightWidth, '-') + '\n')
+    # for k, v in itemsDict.items():
+    #     show_character.insert(tkinter.INSERT, k.ljust(
+    #         leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
+
     for k, v in itemsDict.items():
-        show_character.insert(tkinter.INSERT, k.ljust(
-            leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
+        show_character.insert(tkinter.INSERT, str(k)+': '+str(v)+' ')
+    show_character.insert(tkinter.INSERT, '\n')
+    # k.ljust(
+    #     leftWidth, ' ') + str(v).ljust(rightWidth) + '')
 
     show_character.insert(tkinter.INSERT, 'UMIEJĘTNOŚCI'.center(
         leftWidth + rightWidth, '-') + '\n')
@@ -373,16 +382,48 @@ def print_character2(itemsDict, leftWidth, rightWidth):
 
 
 def generate():
+    show_character.delete('1.0', tkinter.END)
     create_character(clicked2.get(), clicked1.get())
     print_character1(chr_profile, 30, 20)
-    print_character2(chr_profile, 30, 20)
+    print_character2(chr_profile, 30, 20, 3)
+    picture()
     save()
 
 
 def save():
-    chr_file = open('chracter_files.txt', 'a')
+    chr_file = open('character_history.txt', 'a')
     chr_file.write(str(chr_profile) + str(character_skills) + '\n')
     chr_file.close()
+
+
+def values_to_trin(wiek, plec, wyg, maj, krz):
+    from bisect import bisect_left
+    num_wiek = bisect_left([20, 70, 100], wiek)
+    num_plec = {'Mężczyzna': 1, 'Kobieta': 0}[plec]
+    num_wyg = bisect_left([20, 70, 100], wyg)
+    num_maj = bisect_left([20, 70, 100], maj)
+    num_krz = bisect_left([0, 3, 6], krz)
+    return [num_wiek, num_plec, num_wyg, num_maj, num_krz]
+
+
+def picture():
+    global char_image
+    global show_image
+    wiek = chr_profile['Wiek']
+    plec = chr_profile['Płeć']
+    wyg = chr_profile['WYG']
+    maj = character_skills['Majętność']
+    krz = chr_profile['Krzepa']
+    traits = values_to_trin(wiek, plec, wyg, maj, krz)
+    print(traits)
+    portret = modules.imagePicker.pick_image(traits)
+    # show_image.destroy()
+    print(portret)
+    show_image.destroy()
+    char_image = ImageTk.PhotoImage(Image.open(f'support/ml/portraits/{portret}.jfif').resize(
+        (200, 300), resample=Image.ANTIALIAS))
+    show_image = tkinter.Label(extra_options_frame, image=char_image)
+    show_image.grid(row=0, column=0, columnspan=2)
 
 
 # GUI in tkinter
@@ -426,20 +467,21 @@ button_clear.grid(row=3, column=0, pady=5, sticky=tkinter.EW)
 results_frame = tkinter.LabelFrame(root, text='Statystyki Postaci:', padx=10, pady=10)
 results_frame.grid(row=0, column=1, sticky=tkinter.NS)
 
-show_character = tkinter.Text(results_frame, width=60, height=30)
+show_character = tkinter.Text(results_frame, width=70, height=30)
 show_character.pack()
 
 # Prawa strona okna
 extra_options_frame = tkinter.LabelFrame(root, text='Zdjęcie Postaci', padx=10, pady=10)
 extra_options_frame.grid(row=0, column=2, sticky=tkinter.NS)
 
-char_image = ImageTk.PhotoImage(Image.open('support/images/test.jpg').resize(
+char_image = ImageTk.PhotoImage(Image.open(f'support/images/test.jpg').resize(
     (200, 300), resample=Image.ANTIALIAS))
 show_image = tkinter.Label(extra_options_frame, image=char_image)
+show_image.grid(row=0, column=0, columnspan=2)
+
+# Exit and save button
 button_save = tkinter.Button(extra_options_frame, text='Save', anchor=tkinter.S)
 button_exit = tkinter.Button(extra_options_frame, text='Exit', command=root.quit, anchor=tkinter.S)
-
-show_image.grid(row=0, column=0, columnspan=2)
 button_save.grid(row=1, column=0)
 button_exit.grid(row=1, column=1)
 
