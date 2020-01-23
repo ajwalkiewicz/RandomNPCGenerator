@@ -29,8 +29,8 @@ Optimal: occupation is randomly chosen from the group of occupations that give t
 Middle panel: displays the generated character information’s
 
 Right panel:
-5.	Save: does not work.
-6.	Exit: exit the program.
+5. Save: does not work.
+6. Exit: exit the program.
 
 # Extra information’s
 
