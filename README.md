@@ -25,12 +25,12 @@ Random: occupation is randomly chosen from whole list of occupations.
 Optimal: occupation is randomly chosen from the group of occupations that give the higher amount of occupation points.
 3.	Generate: generate character and display it in a middle panel.
 4.	Clear: clear character’s statistics from middle panel.
+
 Middle panel: displays the generated character information’s
+
 Right panel:
 5.	Save: does not work.
 6.	Exit: exit the program.
-
-
 
 # Extra information’s
 
