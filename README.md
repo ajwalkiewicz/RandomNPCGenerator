@@ -1,7 +1,7 @@
 # Random NPC Generator
 
 This project is closed. In the near feature I will publish [NPC Generator](https://github.com/ajwalkiewicz/NPC-Generator) which is a newest version of Random NPC Generator
-Random NPC Generator is my own project that I did in order to learn Python. I am aware that there is a lot of mistakes. Variables naming convention is a big mess, there is a lot of spaghetti code. Some parts of code are totally not necessary others could have been written in a better way.
+Random NPC Generator is my own project that I did in order to learn Python. I am aware that there is a lot of mistakes. Variables naming convention is a big mess and there is a lot of spaghetti code. Some parts of code are totally not necessary others could have been written in a better way.
 
 <p align="center">
   <img alt="Random NPC Generator " src="https://github.com/ajwalkiewicz/random-npc-generator/blob/master/program.png">
