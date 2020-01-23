@@ -8,7 +8,7 @@ Tutaj jedynie za pomocą modułu shelve zostały zimportowane zmienne
 import random
 import shelve
 import modules.dictionaries
-import modules.imagePicker
+# import modules.imagePicker
 from os import path
 import tkinter
 from PIL import ImageTk, Image
@@ -79,6 +79,11 @@ job_skills = [i.lower() for i in job_skills]
 
 
 def losuj_zawod(zaw='Optymalny'):
+    '''Losowanie zawodu:
+    1: Zawód losowy jest dobierany kompletnie losowo
+    2: zawód optymalny jest wybierany losowo z pośród puli zawodów
+    dających największa liczbę punktów zawodowych do rozwinięcia
+    umiejętności'''
     global LISTA_ZAWODOW
     global skill_points
     global hobby_points
@@ -140,6 +145,11 @@ def pochodne(S=0, BC=0, ZR=0):
 
 
 def umiejetnosci(zawod):
+    '''Funkcja losuje umiejętności zawodowe oraz przydziele im losową ilosć punktów
+    z puli punktów zawodowych.
+    Do tego losuje z pośród wszsytkich dosępnych umiejętności, umięjętności
+    dodatkowe i przydziela im punkty z puli punktów na hobbysta
+    Obecnie funkcja nie jest wykorzystywana'''
     def job_skills(zawod):
         global job_skills
         # if zawod in JOB_SKILLS.keys():
@@ -212,7 +222,6 @@ def umiejetnosci(zawod):
     #     hobby_points -= przydzial_pkt
     #     print(hobby_points)
 
-
 # Generowanie cech postaci
 
 
@@ -246,7 +255,6 @@ def create_character(zaw, plec):
         chr_profile['MO'] = pochodne(chr_profile['S'], chr_profile['BC'])[0]
         chr_profile['Krzepa'] = pochodne(chr_profile['S'], chr_profile['BC'])[1]
         chr_profile['Ruch'] = pochodne(chr_profile['S'], chr_profile['BC'], chr_profile['ZR'])[2]
-        print(chr_profile['Zawód'])
 
     def modyfikuj_cechy(Wiek=0, WYG=0, PS=0, Ruch=0):
         if Wiek <= 19:
@@ -347,7 +355,7 @@ def create_character(zaw, plec):
                     PS=int(chr_profile['PS']),
                     Ruch=int(chr_profile['Ruch']))
     losuj_zawod(ustawienia_zawodu)
-    umiejetnosci(chr_profile['Zawód'])
+    # umiejetnosci(chr_profile['Zawód'])
 
     return None
 
@@ -356,43 +364,44 @@ def create_character(zaw, plec):
 
 
 def print_character1(itemsDict, leftWidth, rightWidth):
+    '''This function prints the charachter traits in a terminal'''
     print('PROFIL POSTACI'.center(leftWidth + rightWidth, '-'))
     for k, v in itemsDict.items():
         print(k.ljust(leftWidth, ' ') + str(v).ljust(rightWidth))
 
 
 def print_character2(itemsDict, leftWidth=0, rightWidth=0, columns=1):
+    '''Print character traits in the text field'''
     show_character.insert(tkinter.INSERT, 'PROFIL POSTACI'.center(
         leftWidth + rightWidth, '-') + '\n')
-    # for k, v in itemsDict.items():
-    #     show_character.insert(tkinter.INSERT, k.ljust(
-    #         leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
-
     for k, v in itemsDict.items():
-        show_character.insert(tkinter.INSERT, str(k)+': '+str(v)+' ')
-    show_character.insert(tkinter.INSERT, '\n')
-    # k.ljust(
-    #     leftWidth, ' ') + str(v).ljust(rightWidth) + '')
-
-    show_character.insert(tkinter.INSERT, 'UMIEJĘTNOŚCI'.center(
-        leftWidth + rightWidth, '-') + '\n')
-    for k, v in sorted(character_skills.items()):
-        show_character.insert(tkinter.INSERT, k.capitalize().ljust(
+        show_character.insert(tkinter.INSERT, k.ljust(
             leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
+
+    # for k, v in itemsDict.items():
+    #     show_character.insert(tkinter.INSERT, str(k)+': '+str(v)+' ')
+    # show_character.insert(tkinter.INSERT, '\n')
+
+    # show_character.insert(tkinter.INSERT, 'UMIEJĘTNOŚCI'.center(
+    #     leftWidth + rightWidth, '-') + '\n')
+    # for k, v in sorted(character_skills.items()):
+    #     show_character.insert(tkinter.INSERT, k.capitalize().ljust(
+    #         leftWidth, ' ') + str(v).ljust(rightWidth) + '\n')
 
 
 def generate():
     show_character.delete('1.0', tkinter.END)
-    create_character(clicked2.get(), clicked1.get())
-    print_character1(chr_profile, 30, 20)
+    create_character(job_value.get(), gender_value.get())
+    # print_character1(chr_profile, 30, 20)
     print_character2(chr_profile, 30, 20, 3)
-    picture()
+    # picture()
     save()
 
 
 def save():
     chr_file = open('character_history.txt', 'a')
-    chr_file.write(str(chr_profile) + str(character_skills) + '\n')
+    chr_file.write(str(chr_profile) + '\n')
+    # chr_file.write(str(chr_profile) + str(character_skills) + '\n')
     chr_file.close()
 
 
@@ -434,20 +443,20 @@ root.title('NPC Generator')
 options_frame = tkinter.LabelFrame(root, text='Opcje postaci', padx=10, pady=10)
 options_frame.grid(row=0, column=0, sticky=tkinter.NS)
 
-clicked1 = tkinter.StringVar()
-clicked1.set('Random')
-clicked2 = tkinter.StringVar()
-clicked2.set('Random')
+gender_value = tkinter.StringVar()
+gender_value.set('Random')
+job_value = tkinter.StringVar()
+job_value.set('Optymalny')
 
 
 gender_list = tkinter.OptionMenu(
-    options_frame, clicked1, 'Mężczyzna', 'Kobieta', 'Random')
+    options_frame, gender_value, 'Mężczyzna', 'Kobieta', 'Random')
 gender_list.grid(row=0, column=0, sticky=tkinter.EW)
 
 zawody_list = JOB_SKILLS.keys()
-occupation_list = ('Random', 'Optymalny', *zawody_list)
+occupation_list = ('Random', 'Optymalny')  # , *zawody_list)
 
-job_menu = tkinter.OptionMenu(options_frame, clicked2, *occupation_list)
+job_menu = tkinter.OptionMenu(options_frame, job_value, *occupation_list)
 job_menu.grid(row=1, column=0, sticky=tkinter.EW)
 
 button_generate = tkinter.Button(
@@ -467,14 +476,14 @@ button_clear.grid(row=3, column=0, pady=5, sticky=tkinter.EW)
 results_frame = tkinter.LabelFrame(root, text='Statystyki Postaci:', padx=10, pady=10)
 results_frame.grid(row=0, column=1, sticky=tkinter.NS)
 
-show_character = tkinter.Text(results_frame, width=70, height=30)
+show_character = tkinter.Text(results_frame, width=50, height=21)
 show_character.pack()
 
 # Prawa strona okna
 extra_options_frame = tkinter.LabelFrame(root, text='Zdjęcie Postaci', padx=10, pady=10)
 extra_options_frame.grid(row=0, column=2, sticky=tkinter.NS)
 
-char_image = ImageTk.PhotoImage(Image.open(f'support/images/test.jpg').resize(
+char_image = ImageTk.PhotoImage(Image.open(f'support/images/sample.png').resize(
     (200, 300), resample=Image.ANTIALIAS))
 show_image = tkinter.Label(extra_options_frame, image=char_image)
 show_image.grid(row=0, column=0, columnspan=2)
